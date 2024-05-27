@@ -26,9 +26,10 @@ UI.prototype.llenarOpciones = () => {
 // muestra alertas en pantalla
 UI.prototype.mostrarMensaje = (mensaje, tipo) => {
     const div = document.createElement('div');
-    if (tipo === 'error') {
+    if (tipo === 'error'){
         div.classList.add('error');
-    } else {
+    }
+    else{
         div.classList.add('correcto');
     }
     div.classList.add('mensaje', 'mt-10');
@@ -40,6 +41,7 @@ UI.prototype.mostrarMensaje = (mensaje, tipo) => {
     setTimeout(() => {
         div.remove();
     }, 3000);
+
 }
 
 // instanciar UI
@@ -48,6 +50,7 @@ const ui = new UI();
 
 document.addEventListener('DOMContentLoaded', () => {
     ui.llenarOpciones();
+    EventListeners();
 })
 
 
@@ -63,8 +66,8 @@ function cotizarSeguro(e) {
     const tipo = document.querySelector('input[name="tipo"]:checked').value;
 
     if (marca === '' || year === '' || tipo === '') {
-        console.log('No pasa la validación');
+        ui.mostrarMensaje('Todos los campos son obligatorios','error');
     } else {
-        console.log('Todo correcto');
+        ui.mostrarMensaje('Cotizando...','correcto');
     }
 }
